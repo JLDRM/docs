@@ -28,8 +28,8 @@ Here's an example. To ship logs to [Logtail](https://betterstack.com/logtail), y
 
 ```bash
 # Make a directory for your log shipper app
-mkdir logshippper
-cd logshippper
+mkdir logshipper
+cd logshipper
 
 # Create the app but don't deploy just yet
 fly launch --no-deploy --image ghcr.io/superfly/fly-log-shipper:latest
@@ -38,12 +38,12 @@ fly launch --no-deploy --image ghcr.io/superfly/fly-log-shipper:latest
 # determines which "sinks" are configured
 fly secrets set ORG=personal
 fly secrets set ACCESS_TOKEN=$(fly auth token)
-fly secrets set LOGTAIL_TOKEN=<token provided by logtail source>
+fly secrets set BETTER_STACK_SOURCE_TOKEN=<token provided by logtail source>
 ```
 
 You can configure as many providers as you'd like by adding more secrets. The secrets needed are determined by [which provider(s)](https://github.com/superfly/fly-log-shipper#provider-configuration) you want to use.
 
-Before launching your application, you should edit the generated `fly.toml` file and delete the entire `[[services]]` section. Replace it with this:
+Before launching your application, you should edit the generated `fly.toml` file and delete the entire `[[services]]` or `[http_service]` section. Replace it with this:
 
 ```toml
 [[services]]
